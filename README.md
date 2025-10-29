@@ -40,7 +40,7 @@ opportunity cost are good.
 
 "Feel free to mention any bonus features you implement (or attempted) in your documentation 
 so we don’t overlook them."
-I spent time trying trying to get any decent recognition of real labels from tesseract 
+I spent time trying to get any decent recognition of real labels from tesseract 
 with preprocessing help from PIL.  My conclusion is that for various (many) photographs from
  bottles these tools are too weak and flaky.  Would need to try on submitted fresh flat 
 actual labels or images thereof.
