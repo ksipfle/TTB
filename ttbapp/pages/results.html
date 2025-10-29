@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TTB Label Verification</title>
+  </head>
+
+  <body>
+    <h2>Results</h2>
+    <form
+      action="/index"
+      <p>
+        --- %summaryresult% ---<br />
+        <br />
+        Brand Name:               %brandresult% %brand%<br />
+        <br />
+        Product Class/Type:       %typeresult% %type%<br />
+        <br />
+        Alcohol Content percent:  %alcresult% %alc%<br />
+        <br />
+        Net Contents (ml):        %mlresult% %ml%<br />
+          or<br />
+        Net Contents (oz):        %ozresult% %oz%<br />
+        <br />
+        <br />
+        <img src="media/uploadedimagefile%unique%" height="500" width="500" alt="no image" />
+        <!-- <img src="media/workfile%unique%.jpg" height="500" width="500" alt="no image" /><br /> -->
+        <br />
+        Scanned text:<br />
+        %%
+        <br />
+        <br />
+        <input type="submit" value="OK" />
+      </p>
+    </form>
+  </body>
+</html>

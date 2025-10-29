@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TTB Label Verification</title>
+  </head>
+
+  <body>
+    <h2>TTB Label Application Information</h2>
+    <form enctype="multipart/form-data"
+      action="/results"
+      method="post">
+      <p>
+        REQUIRED Information:<br /><br />
+        Brand Name:<br />
+        <input type="text" name="brand" /><br />
+        <br />
+        Product Class/Type:<br \>
+        <input type="text" name="class/type" /><br />
+        <br />
+        Alcohol Content percent:<br />
+        <input type="numeric" name="pctalcohol" /><br />
+        <br />
+        Net Contents (ml):<br />
+        <input type="numeric" name="ml" /><br />
+          or<br />
+        Net Contents (oz):<br />
+        <input type="numeric" name="oz" /><br />
+        <br />
+        <br />
+        Label Image to Upload:    <input type="file" name="file" /><br />
+        <br />
+        <br />
+        <input type="submit" value="Process..." /> <input type="reset" value="Start Over" />
+      </p>
+    </form>
+  </body>
+</html>
