@@ -131,6 +131,9 @@ def results(request):
             msgsummary = "The label does not match the form."
         if not ocrtext or ocrtext == "":  # 20251030 0630ET added this case
             msgsummary = "Could not read text from the label image. Please try a clearer image."
+        # 20251030 1330ET added below case
+        if "missing entry             " in msgml and "missing entry             " in msgoz:
+            msgsummary = "Error: A volume entry must be provided."
         with open('ttbapp/pages/results.html', 'r') as file:
             content = file.read()
         content = content.replace("%summaryresult%", msgsummary)
