@@ -1,3 +1,8 @@
+#Due and delivered 20251029
+#Small edits added early 20251030, all commented, for better satisfaction of last Objective:
+#"Ensure the app handles various scenarios (matching info, mismatched info, missing fields
+# on the label, unreadable image, etc.) gracefully and clearly."
+
 #from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt #
 from django.views.decorators.csrf import csrf_protect
@@ -82,35 +87,36 @@ def results(request):
         ml =    request.POST["ml"]
         oz =    request.POST["oz"]
 
-        msgbrand = "                    "
-        msgtype =  "                    "
-        msgpct =   "                    "
-        msgml =    "                    "
-        msgoz =    "                    "
+        # 20251030 0630ET for more clarity to user add " ENTRY" after "MISSING"
+        msgbrand = "                          "
+        msgtype =  "                          "
+        msgpct =   "                          "
+        msgml =    "                          "
+        msgoz =    "                          "
         success = True
         if not brand:
-            msgbrand = "REQUIRED AND MISSING"
+            msgbrand = "REQUIRED AND MISSING ENTRY"
             success = False
         else:
             msgbrand = check_for_brand(ocrtext, brand)
             if "NOT FOUND" in msgbrand:
                 success = False
         if not type:
-            msgtype  = "REQUIRED AND MISSING"
+            msgtype  = "REQUIRED AND MISSING ENTRY"
             success = False
         else:
             msgtype = check_for_type(ocrtext, type)
             if "NOT FOUND" in msgtype:
                 success = False
         if not pct:
-            msgpct  =  "REQUIRED AND MISSING"
+            msgpct  =  "REQUIRED AND MISSING ENTRY"
             success = False
         else:
             msgpct = check_for_pct(ocrtext, pct)
             if "NOT FOUND" in msgpct:
                 success = False
-        msgml =    "missing             "
-        msgoz =    "missing             "
+        msgml =    "missing entry             "
+        msgoz =    "missing entry             "
         if ml and ml != "":
             msgml = check_for_ml(ocrtext, ml)
         if oz and oz != "":
@@ -123,6 +129,8 @@ def results(request):
             msgsummary = "The label matches the form data. All required information is consistent."
         else:
             msgsummary = "The label does not match the form."
+        if not ocrtext or ocrtext == "":  # 20251030 0630ET added this case
+            msgsummary = "Could not read text from the label image. Please try a clearer image."
         with open('ttbapp/pages/results.html', 'r') as file:
             content = file.read()
         content = content.replace("%summaryresult%", msgsummary)
@@ -142,28 +150,31 @@ def results(request):
         return HttpResponse(content)
 
 
+# 20251030 0630ET added upper()s and surrounding string context to pct, ml, oz
 def check_for_brand(haystack, needle):
-    if needle in haystack:
+    if needle.upper() in haystack.upper(): 
         return "FOUND               "
     else:
         return "NOT FOUND           "
 def check_for_type(haystack, needle):
-    if needle in haystack:
+    if needle.upper() in haystack.upper():
         return "FOUND               "
     else:
         return "NOT FOUND           "
 def check_for_pct(haystack, needle):
-    if needle in haystack:
+    if (needle + " %").upper() in haystack.upper() or (needle + "%").upper() in haystack.upper():
         return "FOUND               "
     else:
         return "NOT FOUND           "
 def check_for_ml(haystack, needle):
-    if needle in haystack:
+    if (needle + " m").upper() in haystack.upper() or (needle + "m").upper() in haystack.upper():
         return "FOUND               "
     else:
         return "NOT FOUND           "
 def check_for_oz(haystack, needle):
-    if needle in haystack:
+    found1 = (needle + " o").upper() in haystack.upper() or (needle + "o").upper() in haystack.upper()
+    found2 = (needle + " 0").upper() in haystack.upper() or (needle + "0").upper() in haystack.upper()
+    if found1 or found2:
         return "FOUND               "
     else:
         return "NOT FOUND           "
