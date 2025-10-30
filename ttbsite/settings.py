@@ -118,6 +118,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
+#STATICFILES_DIRS = ["/static",]
+#STATICFILES_DIRS = ["static",]
+STATIC_ROOT = "/home/ksipfle/django/"
 
 MEDIA_URL = '/media/'
+
+
+# Add it on your settings.py file
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"), # your static/ files folder
+]

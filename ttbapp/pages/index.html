@@ -2,9 +2,11 @@
 <html lang="en">
   <head>
     <title>TTB Label Verification</title>
+    <link rel="stylesheet" href="static/css/ttb.css">  <!-- ADDED 20251030 0845ET -->
   </head>
 
   <body>
+    <br />  <!-- LINE ADDED 20251030 0855ET -->
     <h2>TTB Label Application Information</h2>
     <form enctype="multipart/form-data"
       action="/results"
@@ -12,13 +14,13 @@
       <p>
         REQUIRED Information:<br /><br />
         Brand Name:<br />
-        <input type="text" name="brand" /><br />
+        <input type="text" name="brand" required /><br />  <!-- ADDED required 20251030 1300ET -->
         <br />
         Product Class/Type:<br \>
-        <input type="text" name="class/type" /><br />
+        <input type="text" name="class/type" required /><br />  <!-- ADDED required 20251030 1300ET -->
         <br />
         Alcohol Content percent:<br />
-        <input type="numeric" name="pctalcohol" /><br />
+        <input type="numeric" name="pctalcohol" required /><br />  <!-- ADDED required 20251030 1300ET -->
         <br />
         Net Contents (ml):<br />
         <input type="numeric" name="ml" /><br />
@@ -27,7 +29,7 @@
         <input type="numeric" name="oz" /><br />
         <br />
         <br />
-        Label Image to Upload:    <input type="file" name="file" /><br />
+        Label Image to Upload:    <input type="file" name="file" required /><br />  <!-- ADDED required 20251030 1300ET -->
         <br />
         <br />
         <input type="submit" value="Process..." /> <input type="reset" value="Start Over" />
